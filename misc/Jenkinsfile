@@ -12,7 +12,7 @@ node {
      }
    }
    stage('docker build/push') {
-     docker.withRegistry('https://index.docker.io/v2/', 'duypk2000') {
+     docker.withRegistry('https://index.docker.io/v2/', '4f456563-ee78-428e-8dea-b1c270c009a5') {
        def app = docker.build("duypk2000/docker-example-nodejs:${commit_id}", '.').push()
      }
    }
