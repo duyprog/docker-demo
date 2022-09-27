@@ -1,4 +1,13 @@
 pipeline{ 
+    environment{ 
+      URL_WEBHOOK ='https://uithcm.webhook.office.com/webhookb2/6790b75b-57ab-4d2e-9775-82d7061bafaa@2dff09ac-2b3b-4182-9953-2b548e0d0b39/IncomingWebhook/29ec3119c4e84cbcaff2c4759ae42738/87ef79c8-386b-422e-9b74-d9772fb6247a'
+    }
+    options{ 
+      office365ConnectorWebhooks([
+        [name: "Microsoft Team", url: "${URL_WEBHOOK}", notifyBackToNormal: true, notifyFailure: true, notifyRepeatedFailure: true, notifySuccess: true, notifyAborted: true]
+      ])
+    }
+// 
   agent any
   parameters{
     string(name: 'BRANCH_BUILD', defaultValue: 'master', description: 'Branch to build')
@@ -36,6 +45,11 @@ pipeline{
   post {
       always {
           deleteDir()
+          steps{
+            office365ConnectorSend webhookUrl: "${URL_WEBHOOK}",
+            message: "success build",
+            status: 'Success'
+          }
       }
     }
 }
