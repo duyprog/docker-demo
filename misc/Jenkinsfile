@@ -28,7 +28,7 @@ pipeline{
       }
 
       steps {
-        node -v
+        sh 'node -v'
       }
     }
   }
