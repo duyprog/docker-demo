@@ -45,11 +45,9 @@ pipeline{
   post {
       always {
           deleteDir()
-          steps{
-            office365ConnectorSend webhookUrl: "${URL_WEBHOOK}",
-            message: "success build",
-            status: 'Success'
-          }
+          office365ConnectorSend webhookUrl: "${URL_WEBHOOK}",
+          message: "success build branch ${BRANCH_BUILD}",
+          status: 'Success'
       }
     }
 }
