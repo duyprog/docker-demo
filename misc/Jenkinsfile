@@ -8,7 +8,7 @@ pipeline{
   stages{
     stage("Checkout SCM"){
 
-      step{
+      steps{
 
         dir("${WORKDIR}"){
           checkout([
