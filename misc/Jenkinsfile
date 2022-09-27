@@ -4,7 +4,7 @@ pipeline{
     }
     options{ 
       office365ConnectorWebhooks([
-        [name: "Microsoft Team", url: "https://uithcm.webhook.office.com/webhookb2/6790b75b-57ab-4d2e-9775-82d7061bafaa@2dff09ac-2b3b-4182-9953-2b548e0d0b39/IncomingWebhook/29ec3119c4e84cbcaff2c4759ae42738/87ef79c8-386b-422e-9b74-d9772fb6247a", notifyBackToNormal: true, notifyFailure: true, notifyRepeatedFailure: true, notifySuccess: true, notifyAborted: true]
+        [name: "Microsoft Team", url: "https://uithcm.webhook.office.com/webhookb2/6790b75b-57ab-4d2e-9775-82d7061bafaa@2dff09ac-2b3b-4182-9953-2b548e0d0b39/IncomingWebhook/29ec3119c4e84cbcaff2c4759ae42738/87ef79c8-386b-422e-9b74-d9772fb6247a", notifyFailure: true, notifyRepeatedFailure: true, notifySuccess: true, notifyAborted: true]
       ])
     }
 // 
@@ -13,6 +13,7 @@ pipeline{
     string(name: 'BRANCH_BUILD', defaultValue: 'master', description: 'Branch to build')
     string(name: 'WORKDIR', defaultValue: 'docker-demo', description: 'Where a git will clone into')
     string(name: 'GIT_URL', defaultValue: '', description: 'Git URL of project to build')
+    string(name: 'BASELINE', defaultValue: '', description: 'Baseline message')
   }
   stages{
     stage("Checkout SCM"){
@@ -46,7 +47,7 @@ pipeline{
       always {
           deleteDir()
           office365ConnectorSend webhookUrl: "${URL_WEBHOOK}",
-          message: "success build branch ${BRANCH_BUILD}",
+          message: "${BASELINE}",
           status: 'Success'
       }
     }
