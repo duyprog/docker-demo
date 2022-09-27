@@ -29,18 +29,18 @@ pipeline{
       }
     }
 
-    stage('Test npm'){
-      agent{
-        docker {
-          image 'node:4.6'
-        }
-      }
+    // stage('Test npm'){
+    //   agent{
+    //     docker {
+    //       image 'node:4.6'
+    //     }
+    //   }
 
-      steps {
-        sh 'npm install --only dev'
-        sh 'npm test'
-      }
-    }
+    //   steps {
+    //     sh 'npm install --only dev'
+    //     sh 'npm test'
+    //   }
+    // }
   }
   post {
       always {
