@@ -13,7 +13,7 @@ pipeline{
     string(name: 'BRANCH_BUILD', defaultValue: 'master', description: 'Branch to build')
     string(name: 'WORKDIR', defaultValue: 'docker-demo', description: 'Where a git will clone into')
     string(name: 'GIT_URL', defaultValue: '', description: 'Git URL of project to build')
-    string(name: 'BASELINE', defaultValue: '', description: 'Baseline message')
+    text(name: 'BASELINE', defaultValue: '', description: 'Baseline message')
   }
   stages{
     stage("Checkout SCM"){
