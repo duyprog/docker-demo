@@ -36,8 +36,12 @@ workflows:
   welcome: 
     jobs: 
       - welcome/run
-      - build
-      - print_hello
+      - build: 
+          requires: 
+            - "welcome/run"
+      - print_hello:
+          requires:
+            - "build"
       - print_world: 
           requires:
             - "print_hello"
