@@ -3,6 +3,16 @@ orbs:
   welcome: circleci/welcome-orb@0.4.1
 
 jobs: 
+  build: 
+    docker:
+      - image: circleci/node:13.8.0
+    steps: 
+      - run: 
+          name: "Setup custom environment variables"
+          command: echo 'export MY_ENV_VAR="FOO"' >> "$BASH_ENV" 
+      - run: 
+          name: "What is my custom environment variables"
+          command: echo ${MY_ENV_VAR}
   print_hello: 
     docker: 
       - image:  circleci/node:13.8.0
