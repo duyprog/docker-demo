@@ -29,8 +29,14 @@ jobs:
           name: Print World
           command: | 
             echo "worlds"
-    
-      
+  deploy: 
+    docker: 
+      - image: circleci/node:13.8.0
+    steps: 
+      - run: 
+          name: Deploy 
+          command: | 
+            echo "Tui dang deploy ne"   
 
 workflows: 
   welcome: 
@@ -45,3 +51,6 @@ workflows:
       - print_world: 
           requires:
             - "print_hello"
+      - deploy: 
+          requires: 
+            - "print_world"
