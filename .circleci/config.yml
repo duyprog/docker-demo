@@ -55,3 +55,4 @@ workflows:
           requires: 
             - "print_world"
             - "print_hello"
+            - "build"
