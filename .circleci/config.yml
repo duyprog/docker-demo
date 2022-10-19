@@ -28,7 +28,7 @@ jobs:
       - run: 
           name: Print World
           command: | 
-            echo "world"
+            echo "worlds"
     
       
 
