@@ -47,10 +47,11 @@ workflows:
             - "welcome/run"
       - print_hello:
           requires:
-            - "build"
+            - "welcome/run"
       - print_world: 
           requires:
-            - "print_hello"
+            - "welcome/run"
       - deploy: 
           requires: 
             - "print_world"
+            - "print_hello"
