@@ -51,8 +51,10 @@ workflows:
       - print_world: 
           requires:
             - "welcome/run"
+      - hold: 
+          type: approval
+          requires:
+            - "build"
       - deploy: 
           requires: 
-            - "print_world"
-            - "print_hello"
-            - "build"
+            - "hold"
